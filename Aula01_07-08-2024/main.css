@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container-image {
+    width: 40vw;
+    max-height: 60vh;
+    height: auto;
+    margin-top: 1rem;
+}
+
+.button-container {
+    width: 20vw;
+    margin-top: 1rem;
+    border: 0;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    transition: ease-in-out 0.2s;
+    font-weight: bold;
+    background-color: #333;
+    color: #fff;
+}
+
+.button-container:hover{
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+}
