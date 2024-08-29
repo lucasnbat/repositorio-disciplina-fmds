@@ -1,6 +1,6 @@
 <template>
   <v-list>
-    <v-list-item prepend-avatar="https://cdn.vuetifyjs.com/images/john.png" subtitle="risadinha@gmail.com"
+    <v-list-item prepend-avatar="https://github.com/0xpuck.png" subtitle="risadinha@teste.com"
       title="Risadinha" />
   </v-list>
   <v-divider />
@@ -13,19 +13,22 @@ const menu = [
   {
     title: "Home",
     props: {
-      prependIcon: "mdi-home"
+      prependIcon: "mdi-home",
+      link: "true"
     }
   },
   {
     title: "Reports",
     props: {
-      prependIcon: "mdi-chart-bar"
+      prependIcon: "mdi-chart-bar",
+      link: "true"
     }
   },
   {
     title: "Contact & Suport",
     props: {
-      prependIcon: "mdi-whatsapp"
+      prependIcon: "mdi-whatsapp",
+      link: "true"
     }
   },
 ]
