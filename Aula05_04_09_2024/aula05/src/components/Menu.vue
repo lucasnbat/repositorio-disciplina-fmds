@@ -3,7 +3,7 @@
     <v-list-subheader>
       {{ titulo }}
     </v-list-subheader>
-    <v-list-item prepend-icon="mdi-home" title="Home" to="/" />
+    <v-list-item prepend-icon="mdi-home" title="Inicio" to="/" />
     <v-list-item prepend-icon="mdi-whatsapp" title="Contato" to="/Contato" />
     <v-list-item prepend-icon="mdi-account" title="Minha conta" to="/MinhaConta" />
     <v-list-item prepend-icon="mdi-file-document" title="Relatórios" to="/Relatorio" />

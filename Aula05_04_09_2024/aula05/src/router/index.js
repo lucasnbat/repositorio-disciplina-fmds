@@ -29,6 +29,10 @@ router.onError((err, to) => {
   }
 })
 
+router.beforeEach((to, from)=>{
+  if(to.path === '/') return '/Inicio'
+})
+
 router.isReady().then(() => {
   localStorage.removeItem('vuetify:dynamic-reload')
 })

@@ -7,19 +7,15 @@
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-app-bar-title>Application</v-app-bar-title>
+      <v-spacer></v-spacer>
+      <v-chip class="mr-2" :color="(logado_logged) ? 'green' : 'error'" label>{{ statusComputed }}</v-chip>
     </v-app-bar>
 
     <v-main>
       <v-container>
         <!-- <div class="margin-right"> {{ status }}</div> -->
         <RouterView v-if="route.path != '/'" />
-        <v-card v-else>
-          <v-card-title>Meu site</v-card-title>
-          <v-card-text>
-            <p>Você está: {{ status }}</p>
-            <p>Sua página é: {{ route.path }}</p>
-          </v-card-text>
-        </v-card>
+
       </v-container>
     </v-main>
   </v-app>
@@ -31,8 +27,11 @@ import { useRouter } from 'vue-router'
 
 const route = useRoute()
 const drawer = ref(true)
-const status = ref('Logado')
+const statusComputed = computed(() => {
+  return logado_logged.value ? "Logado" : "Deslogado"
+})
+const logado_logged = ref(true)
 const deslogar = () => {
-  status.value = 'Deslogado'
+  logado_logged.value = false
 }
 </script>
