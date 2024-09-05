@@ -12,11 +12,12 @@
     <v-main>
       <v-container>
         <!-- <div class="margin-right"> {{ status }}</div> -->
-        <RouterView />
-        <v-card>
+        <RouterView v-if="route.path != '/'" />
+        <v-card v-else>
           <v-card-title>Meu site</v-card-title>
           <v-card-text>
             <p>Você está: {{ status }}</p>
+            <p>Sua página é: {{ route.path }}</p>
           </v-card-text>
         </v-card>
       </v-container>
@@ -26,7 +27,9 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
+const route = useRoute()
 const drawer = ref(true)
 const status = ref('Logado')
 const deslogar = () => {
