@@ -3,6 +3,7 @@
     <!-- Formulário menor centralizado -->
     <v-card max-width="500" class="mx-auto">
       <v-card-title>Register Form</v-card-title>
+      <v-card-subtitle>Customer - {{ fullName }} - {{ now }}</v-card-subtitle>
       <v-spacer />
       <v-card-text>
         <v-form>
@@ -36,7 +37,10 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+
+// computed = outros lugares mudaram? muda a var --> verifica se os outros lugares mudam toda hora, 24/7
+// watch = observa outros lugares e muda algo
+import { ref, watch, computed } from 'vue'
 
 const user = ref({
   name: '',
@@ -54,6 +58,7 @@ const passwordRequirements = ref([
   { name: 'Password need to have at last one uppercase letter', checked: false }
 ])
 
+// usando arrow function para vigir a prop password do objeto
 watch(() => user.value.password, (val) => {
   passwordRequirements.value[0].checked = val.length >= 8 //substitui o checkd do primeiro objeto por true
   passwordRequirements.value[1].checked = !!val.match(/[0-9]/)
@@ -62,4 +67,7 @@ watch(() => user.value.password, (val) => {
   passwordRequirements.value[4].checked = !!val.match(/[A-Z]/)
 
 })
+
+const fullName = computed(() => { return user.value.name + ' ' + user.value.lastName })
+const now = computed(() => new Date().toLocaleString())
 </script>
