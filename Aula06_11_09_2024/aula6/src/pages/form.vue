@@ -48,7 +48,6 @@ const user = ref({
   email: '',
   password: '',
 })
-const ready = ref(false)
 
 const passwordRequirements = ref([
   { name: 'Password need to have a minimal of eight characters', checked: false },
@@ -68,6 +67,10 @@ watch(() => user.value.password, (val) => {
 
 })
 
+const ready = computed(() => {
+  const req = passwordRequirements.value.every((obj) => obj.checked === true)
+  return !(user.value.name && user.value.lastName && user.value.email && req)
+})
 const fullName = computed(() => { return user.value.name + ' ' + user.value.lastName })
 const now = computed(() => new Date().toLocaleString())
 </script>
