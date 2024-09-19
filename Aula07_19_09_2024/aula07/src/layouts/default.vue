@@ -6,9 +6,9 @@
       <v-spacer></v-spacer>
 
       <v-tabs color="grey-darken-2" centered>
-        <v-tab text="Home" />
-        <v-tab text="Login" />
-        <v-tab text="Dashboard" />
+        <v-tab text="Home" to="/" />
+        <v-tab text="Login" to="/login" />
+        <v-tab text="Dashboard" to="/dashboard" />
       </v-tabs>
 
       <v-spacer></v-spacer>
