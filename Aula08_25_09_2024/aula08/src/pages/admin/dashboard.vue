@@ -1,6 +1,4 @@
 <template>
-  Dashboard do Admin
-
   <v-toolbar app color="primary" dark>
     <!-- usuario logado -->
     <v-avatar>
@@ -11,7 +9,10 @@
     <v-btn @click="store.logout">Sair</v-btn>
   </v-toolbar>
   <v-container>
-    dashboard
+    <v-card>
+      <v-card-title>Dashboard</v-card-title>
+      <v-card-text>Contéudo do Dash aqui</v-card-text>
+    </v-card>
   </v-container>
 </template>
 <script setup>

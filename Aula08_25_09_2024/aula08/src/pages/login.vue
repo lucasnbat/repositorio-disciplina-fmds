@@ -1,6 +1,6 @@
 <template>
-  <v-container>
-    <v-btn @click="store.login">Google</v-btn>
+  <v-container style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh">
+    <v-btn @click="store.login" color="primary" style="max-width: 300px;">LOGAR COM GOOGLE</v-btn>
   </v-container>
 </template>
 

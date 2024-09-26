@@ -9,6 +9,7 @@ import { createRouter, createWebHistory } from "vue-router/auto";
 import { setupLayouts } from "virtual:generated-layouts";
 import { routes } from "vue-router/auto-routes";
 import { useUserStore } from "@/stores/user";
+import { onAuthStateChanged, getAuth } from "firebase/auth";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -42,13 +43,33 @@ router.isReady().then(() => {
 });
 
 router.beforeEach((to, from, next) => {
-  const loggedIn = useUserStore().isLogin;
-  console.log(loggedIn);
-  if (to.path.includes("/admin") && !loggedIn) {
-    console.log("Rota protegida");
-    next("/login");
+  const store = useUserStore();
+  const loggedIn = store.isLogin;
+  const auth = getAuth()
+
+  if (!store.user.accessToken) {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        store.$patch({
+          user: {
+            displayName: user.displayName,
+            email: user.email,
+            photoURL: user.photoURL,
+            accessToken: user.accessToken,
+          },
+        });
+        next();
+      } else {
+        if (to.path.includes("/admin") && !loggedIn) {
+          next("/login");
+        } else {
+          next();
+        }
+      }
+    });
+  } else {
+    next();
   }
-  next();
 });
 
 export default router;

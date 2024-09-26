@@ -6,7 +6,7 @@ import {
   signOut,
   onAuthStateChanged,
   setPersistence,
-  browserSessionPersistence,
+  browserLocalPersistence,
 } from "firebase/auth";
 
 const auth = getAuth();
@@ -15,11 +15,21 @@ import router from "@/router";
 
 onAuthStateChanged(auth, async (user) => {
   if (user) {
-    useUserStore.setUser(auth.currentUser);
+    useUserStore().$patch({
+      user: {
+        displayName: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL,
+        accessToken: await user.getIdToken(),
+      },
+    });
+  } else {
+    router.push("/login");
   }
 });
 
-setPersistence(auth, browserSessionPersistence);
+// persistência local
+setPersistence(auth, browserLocalPersistence);
 
 export const useUserStore = defineStore("user", {
   state: () => ({
@@ -49,6 +59,5 @@ export const useUserStore = defineStore("user", {
   },
   getters: {
     isLogin: (state) => !!state.user.accessToken,
-    getUser:
   },
 });
