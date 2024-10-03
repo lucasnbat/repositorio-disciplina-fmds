@@ -56,7 +56,10 @@ app.get('/cliente/:id', (req, res) => {
 
 /* Delete */
 app.delete('/cliente/:id', (req, res) => {
-    res.send('Cliente deletado!')
+    const id = req.params.id
+    const indexOfId = clientes.findIndex(cli => cli.id == id)
+    clientes.splice(indexOfId, 1)
+    res.json(clientes)
 })
 
 app.get('/', (req, res) => {
